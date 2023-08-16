@@ -1,4 +1,5 @@
 import timeit
+import matplotlib.pyplot as plt
 
 conjunto_1 = [[True, True, True]] # (A v B v C)
 
@@ -66,6 +67,10 @@ conjunto_10 = [[False, False, False],
                [False, True, False]]
 
 contador_iteraciones = 0
+
+listIteraciones = []
+listTimes = []
+listResultados = []
 # Segun el numero de la iteracion, se obtienen los valores de los booleanos que se estan usando para buscar soluciones
 def get_a(numero):
     value_post_shr = numero >> 2
@@ -109,97 +114,147 @@ solucion_1 = solucion(conjunto_1)
 print("Conjunto 1: ") 
 if solucion_1 == []:
     print("     No tiene solucion")
+    listResultados.append(False)
 else: 
     print("     Sí (A:", solucion_1[0], ", B:", solucion_1[1], ", C:", solucion_1[2], ")")
-print("Iteraciones: " + str(contador_iteraciones))
+    listResultados.append(True)
+listIteraciones.append(contador_iteraciones)
 contador_iteraciones = 0
 
 print("Conjunto 2: ") 
 solucion_2 = solucion(conjunto_2) 
 if solucion_2 == []:
     print("     No tiene solucion")
+    listResultados.append(False)
 else: 
     print("     Sí (A:", solucion_2[0], ", B:", solucion_2[1], ", C:", solucion_2[2], ")")
-print("Iteraciones: " + str(contador_iteraciones))
+    listResultados.append(True)
+listIteraciones.append(contador_iteraciones)
 contador_iteraciones = 0
 
 print("Conjunto 3: ") 
 solucion_3 = solucion(conjunto_3) 
 if solucion_3 == []:
     print("     No tiene solucion")
+    listResultados.append(False)
 else: 
     print("     Sí (A:", solucion_3[0], ", B:", solucion_3[1], ", C:", solucion_3[2], ")")
-print("Iteraciones: " + str(contador_iteraciones))
+    listResultados.append(True)
+listIteraciones.append(contador_iteraciones)
 contador_iteraciones = 0
 
 print("Conjunto 4: ") 
 solucion_4 = solucion(conjunto_4) 
 if solucion_4 == []:
     print("     No tiene solucion")
+    listResultados.append(False)
 else: 
     print("     Sí (A:", solucion_4[0], ", B:", solucion_4[1], ", C:", solucion_4[2], ")")
-print("Iteraciones: " + str(contador_iteraciones))
+    listResultados.append(True)
+listIteraciones.append(contador_iteraciones)
 contador_iteraciones = 0
 
 print("Conjunto 5: ") 
 solucion_5 = solucion(conjunto_5) 
 if solucion_5 == []:
     print("     No tiene solucion")
+    listResultados.append(False)
 else: 
     print("     Sí (A:", solucion_5[0], ", B:", solucion_5[1], ", C:", solucion_5[2], ")")
-print("Iteraciones: " + str(contador_iteraciones))
+    listResultados.append(True)
+listIteraciones.append(contador_iteraciones)
 contador_iteraciones = 0
 
 print("Conjunto 6: ") 
 solucion_6 = solucion(conjunto_6) 
 if solucion_6 == []:
     print("     No tiene solucion")
+    listResultados.append(False)
 else: 
     print("     Sí (A:", solucion_6[0], ", B:", solucion_6[1], ", C:", solucion_6[2], ")")
-print("Iteraciones: " + str(contador_iteraciones))
+    listResultados.append(True)
+listIteraciones.append(contador_iteraciones)
 contador_iteraciones = 0
 
 print("Conjunto 7: ") 
 solucion_7 = solucion(conjunto_7) 
 if solucion_7 == []:
     print("     No tiene solucion")
+    listResultados.append(False)
 else: 
     print("     Sí (A:", solucion_7[0], ", B:", solucion_7[1], ", C:", solucion_7[2], ")")
-print("Iteraciones: " + str(contador_iteraciones))
+    listResultados.append(True)
+listIteraciones.append(contador_iteraciones)
 contador_iteraciones = 0
 
 print("Conjunto 8: ") 
 solucion_8 = solucion(conjunto_8) 
 if solucion_8 == []:
     print("     No tiene solucion")
+    listResultados.append(False)
 else: 
     print("     Sí (A:", solucion_8[0], ", B:", solucion_8[1], ", C:", solucion_8[2], ")")
-print("Iteraciones: " + str(contador_iteraciones))
+    listResultados.append(True)
+listIteraciones.append(contador_iteraciones)
 contador_iteraciones = 0
 
 print("Conjunto 9: ") 
 solucion_9 = solucion(conjunto_9) 
 if solucion_9 == []:
     print("     No tiene solucion")
+    listResultados.append(False)
 else: 
     print("     Sí (A:", solucion_9[0], ", B:", solucion_9[1], ", C:", solucion_9[2], ")")
-print("Iteraciones: " + str(contador_iteraciones))
+    listResultados.append(True)
+listIteraciones.append(contador_iteraciones)
 contador_iteraciones = 0
 
 print("Conjunto 10: ") 
 solucion_10 = solucion(conjunto_10) 
 if solucion_10 == []:
     print("     No tiene solucion")
+    listResultados.append(False)
 else: 
     print("     Sí (A:", solucion_10[0], ", B:", solucion_10[1], ", C:", solucion_10[2], ")")
-print("Iteraciones: " + str(contador_iteraciones))
+    listResultados.append(True)
+listIteraciones.append(contador_iteraciones)
 contador_iteraciones = 0
 
 for i in range(1, 11):
     code_to_measure = "solucion(conjunto_"+str(i)+")"
     execution_time = timeit.timeit(stmt = code_to_measure, setup = "from __main__ import solucion, conjunto_"+str(i), number = 1)
-    print(execution_time)
+    listTimes.append(execution_time)
     # if (flag):
     #     print("Sí (A: ", a,", B: ",b, ", C: ", c,")") 
     # else: 
     #     print ("No :/")
+
+def table_data():
+    global listIteraciones
+    global listTimes
+    global listResultados
+
+    # Se agrupan los datos a mostrar con su correspondiente de cada lista
+    cantidadClausulas = ["1", "2", "3", "4", "5", "6", "7", "8", "9", "10"]
+    datosMostrar = list(zip(cantidadClausulas, listResultados, listIteraciones, listTimes))
+
+    # Crea la ventana donde se va a mostrar la tabla y le pone un limitante 
+    # (márgenes) para que la misma se muestre 
+    fig, ax = plt.subplots(figsize=(8, 5))
+    plt.subplots_adjust(left=0.1, right=0.9, top=0.9, bottom=0.1)
+
+    # Se crea la tabla con los encabezados y datos a mostrar
+    tabla = ax.table(cellText=datosMostrar,
+        colLabels=["Cant. Clausulas", "Resultado", "Interaciones", "Tiempo"],
+        cellLoc="center", loc="center")
+
+    # Personalización de la table
+    tabla.auto_set_font_size(False)
+    tabla.set_fontsize(8)
+    tabla.scale(1.2, 1.2)
+    plt.title('Tabla Resumen con los Datos Recolectados en la Prueba')
+    ax.axis("off")
+
+    # Muestra la ventana con la tabla en pantalla
+    plt.show()
+table_data()
