@@ -75,7 +75,10 @@ def get_b(numero):
     return value_post_shr & 1
 def get_c(numero):
     return numero & 1
-
+def get_value_of_variable(variable_1, variable_2):
+    if (not variable_1): 
+        return not variable_2
+    return variable_2
 def solucion(conjunto): # n
     global contador_iteraciones
     a = False
@@ -88,7 +91,7 @@ def solucion(conjunto): # n
         contador_iteraciones += 1
         for j in range (cant_clausulas): # Segun los valores actuales de a,b,c compara si para todas las clausulas es True. n
             contador_iteraciones += 1
-            if (not ((conjunto[j][0] and a) or (conjunto[j][1] and b) or (conjunto[j][2] and c))): # Sale del ciclo si una de las clausulas no lo es. 1
+            if (not (get_value_of_variable(conjunto[j][0], a) or get_value_of_variable(conjunto[j][1], b) or get_value_of_variable(conjunto[j][2], c))): # Sale del ciclo si una de las clausulas no lo es. 1
                 break
             if (j == cant_clausulas-1): # Si la iteracion llego a i = 2 hasta este punto quiere decir que se encontro una solucion. 1
                 flag = True
