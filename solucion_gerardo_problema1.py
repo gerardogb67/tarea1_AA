@@ -3,32 +3,32 @@ import matplotlib.pyplot as plt
 
 conjunto_1 = [[True, True, True]] # (A v B v C)
 
-conjunto_2 = [[True, True, False],
+conjunto_2 = [[True, True, False], # (A ∨ B ∨ ¬C) ∧ (A ∨ ¬B ∨ ¬C)
               [True, False, False]]
 
-conjunto_3 = [[True, False, True],
+conjunto_3 = [[True, False, True], # (A ∨ ¬B ∨ C) ∧ (¬A ∨ B ∨ ¬C) ∧ (¬A ∨ ¬B ∨ C)
               [False, True, False],
               [False, False, True]]
 
-conjunto_4 = [[True, False, True],
+conjunto_4 = [[True, False, True], # (A ∨ ¬B ∨ C) ∧ (A ∨ B ∨ C) ∧ (¬A ∨ B ∨ C) ∧ (¬A ∨ ¬B ∨ ¬C)
               [True, True, True],
               [False, True, True],
               [False, False, False]]
 
-conjunto_5 = [[False, False, False],
+conjunto_5 = [[False, False, False], # (¬A ∨ ¬B ∨ ¬C) ∧ (¬A ∨ ¬B ∨ C) ∧ (¬A ∨ B ∨ ¬C) ∧ (A ∨ B ∨ ¬C) ∧ (A ∨ B ∨ ¬C)
               [False, False, True],
               [False, True, False],
               [True, True, False],
               [True, True, False]]
 
-conjunto_6 = [[False, True, False],
+conjunto_6 = [[False, True, False], # (¬A ∨ B ∨ ¬C) ∧ (A ∨ B ∨ C) ∧ (¬A ∨ B ∨ C) ∧ (A ∨ B ∨ ¬C) ∧ (A ∨ ¬B ∨ C) ∧ (A ∨ ¬B ∨ ¬C)
               [True, True, True],
               [False, True, True],
               [True, True, False],
               [True, False, True],
               [True, False, False]]
 
-conjunto_7 = [[False, False, False],
+conjunto_7 = [[False, False, False], # (¬A ∨ ¬B ∨ ¬C) ∧ (¬A ∨ B ∨ C) ∧ (¬A ∨ ¬B ∨ C) ∧ (A ∨ B ∨ ¬C) ∧ (A ∨ ¬B ∨ C) ∧ (A ∨ B ∨ C) ∧ (¬A ∨ B ∨ ¬C)
               [False, True, True],
               [False, False, True],
               [True, True, False],
@@ -36,7 +36,7 @@ conjunto_7 = [[False, False, False],
               [True, True, True],
               [False, True, False]]
 
-conjunto_8 = [[False, True, True],
+conjunto_8 = [[False, True, True], # (¬A ∨ B ∨ C) ∧ (A ∨ B ∨ ¬C) ∧ (A ∨ ¬B ∨ C) ∧ (A ∨ ¬B ∨ ¬C) ∧ (¬A ∨ ¬B ∨ C) ∧ (¬A ∨ B ∨ ¬C) ∧ (A ∨ B ∨ ¬C) ∧ (A ∨ B ∨ C)
               [True, True, False],
               [True, False, True],
               [True, False, False],
@@ -45,7 +45,7 @@ conjunto_8 = [[False, True, True],
               [True, True, False],
               [True, True, True]]
 
-conjunto_9 = [[False, False, False],
+conjunto_9 = [[False, False, False], # (¬A ∨ ¬B ∨ ¬C) ∧ (¬A ∨ ¬B ∨ ¬C) ∧ (¬A ∨ ¬B ∨ ¬C) ∧ (¬A ∨ ¬B ∨ ¬C) ∧ (A ∨ B ∨ C) ∧ (A ∨ ¬B ∨ ¬C) ∧ (A ∨ B ∨ C) ∧ (A ∨ B ∨ ¬C) ∧ (A ∨ B ∨ ¬C)
               [False, False, False],
               [False, False, False],
               [False, False, False],
@@ -55,7 +55,7 @@ conjunto_9 = [[False, False, False],
               [True, True, False],
               [True, True, False]]
 
-conjunto_10 = [[False, False, False],
+conjunto_10 = [[False, False, False], # (¬A ∨ ¬B ∨ ¬C) ∧ (A ∨ B ∨ ¬C) ∧ (A ∨ B ∨ ¬C) ∧ (A ∨ ¬B ∨ C) ∧ (¬A ∨ B ∨ ¬C) ∧ (¬A ∨ ¬B ∨ C) ∧ (¬A ∨ B ∨ C) ∧ (A ∨ ¬B ∨ C) ∧ (A ∨ B ∨ ¬C) ∧ (¬A ∨ B ∨ ¬C)
                [True, True, False],
                [True, True, False],
                [True, False, True],
@@ -258,3 +258,29 @@ def table_data():
     # Muestra la ventana con la tabla en pantalla
     plt.show()
 table_data()
+
+def graphic_time():
+    global listTimes
+
+    # Datos a mostrar en el gráfico (x = Cantidad de cláusulas, y = iteraciones)
+    x = ["1", "2", "3", "4", "5", "6", "7", "8", "9", "10"]
+    y = listTimes
+
+    plt.figure(figsize=(8, 6))
+    plt.subplots_adjust(left=0.15, right=0.95, top=0.9, bottom=0.1)
+
+    # Crear el gráfico
+    plt.plot(x, y, label='Duración', color="blue", linewidth = 3)
+    plt.scatter(x, y, color='cyan', label='Valores',linewidths = 4)
+    
+    # Agregar etiquetas y título
+    plt.xlabel('Cantidad de cláusulas')
+    plt.ylabel('Tiempo de ejecución')
+    plt.title('Gráfico del Tiempo de Ejecución en los Conjuntos Prueba')
+
+    # Agregar leyenda
+    plt.legend()
+
+    # Mostrar el gráfico
+    plt.show()
+graphic_time()
