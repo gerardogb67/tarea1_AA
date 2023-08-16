@@ -20,11 +20,6 @@ counter = 0
 
 # listaConjuntosP = [
 #     "(A ∨ B ∨ ¬C) ∧ (A ∨ ¬B ∨ ¬C) ∧ (A ∨ B ∨ C)",
-#     "(A ∨ ¬B ∨ C) ∧ (¬A ∨ B ∨ ¬C) ∧ (¬A ∨ ¬B ∨ C)"
-# ]
-
-# listaConjuntosP = [
-#     "(A ∨ B ∨ ¬C) ∧ (A ∨ ¬B ∨ ¬C) ∧ (A ∨ B ∨ C)",
 #     "(A ∨ ¬B ∨ C) ∧ (¬A ∨ B ∨ ¬C) ∧ (¬A ∨ ¬B ∨ C)",
 #     "(¬A ∨ ¬B ∨ C) ∧ (A ∨ B ∨ C) ∧ (¬A ∨ B ∨ C)",
 #     "(A ∨ B ∨ C) ∧ (A ∨ B ∨ C) ∧ (A ∨ B ∨ C)",
